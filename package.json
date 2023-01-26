@@ -1,0 +1,23 @@
+{
+  "name": "designpatterns-decorator",
+  "version": "1.0.0",
+  "description": "DesignPatterns decorator base~",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caiyuzhen/DesignPatterns-decorator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caiyuzhen/DesignPatterns-decorator/issues"
+  },
+  "homepage": "https://github.com/Caiyuzhen/DesignPatterns-decorator#readme",
+  "devDependencies": {
+    "vite": "^4.0.4"
+  }
+}
