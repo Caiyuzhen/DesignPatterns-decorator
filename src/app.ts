@@ -4,8 +4,6 @@ import TodoList from './TodoList/index'
 	const oInput: HTMLInputElement = doc.querySelector('input') as HTMLInputElement
 	const oAddBtn: HTMLButtonElement = doc.querySelector('.add-btn') as HTMLButtonElement
 	const oTodoList: HTMLElement = doc.querySelector('.todo-list') as HTMLElement
-
-
 	// 实例化
 	const todoList = TodoList.create(oTodoList) //create 创建一个实例
 	// '/' 加上 '*' 号可以打出下面的注释
@@ -30,6 +28,7 @@ import TodoList from './TodoList/index'
 
 	// 事件处理函数
 	function onAddBtnClick() {
+		// console.log('触发了事件监听器...');
 		const val: string = oInput.value.trim()//去掉空格
 		if(!val.length) {//为空没有输入的状态, 则为 0, 那么则为 false
 			return
@@ -43,16 +42,23 @@ import TodoList from './TodoList/index'
 
 		// 清空输入框
 		oInput.value = ''
+		// console.log(oTodoList);
 	}
 
 
-	// 🔥事件处理函数 (绑定整个 list 的【🔥 事件代理, 用 e 来找到真正点击的是 checkbox 还是 button！】, 用来代理所有的 checkbox)
+	// 🔥事件处理函数 (绑定整个 list 的【🔥 事件代理（包含切换 checkbox、删除 item 两个事件）】 用 e 来找到真正点击的是 checkbox 还是 button！】, 用来代理所有的 checkbox)
 	function onTodoListClick(e: MouseEvent) {//可能是【鼠标的点击】也可能是【键盘的点击】
 		const tar = e.target as HTMLElement //🔥因为 HTMLElement 上才有 tagName 属性
-		const tagName = tar!.tagName
-		if(tagName === 'input' || tagName === 'button') { //不用当心 button 会重复, 因为事件是绑定在 oTodoList 上的
-			const id:number = parseInt(tar.dataset.id!)
+		const tagName = tar!.tagName.toLocaleLowerCase() //BUTTON 转化为小写 Button
+		// console.log(tagName);//大小写问题！！
 
+		console.log(oTodoList);
+
+		if(tagName === 'input' || tagName === 'button') { //不用当心 button 会重复, 因为事件是绑定在 oTodoList 上的
+			const id: number = parseInt(tar.dataset.id!)
+
+			console.log('开始执行切换或绑定的事件...')
+			
 			switch (tagName) {
 				case 'input':
 					todoList.toggleComplete(id)
@@ -67,6 +73,6 @@ import TodoList from './TodoList/index'
 		}
 	}
 
-
+	init()
 	
 })(document)
