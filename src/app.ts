@@ -1,3 +1,5 @@
+import TodoList from './TodoList/index'
+
 ((doc) => {  //document 对象被传递给了 doc 参数，并 doc 作为参数传递给了匿名函数
 	const oInput: HTMLInputElement = doc.querySelector('input') as HTMLInputElement
 	const oAddBtn: HTMLButtonElement = doc.querySelector('.add-btn') as HTMLButtonElement
@@ -5,7 +7,7 @@
 
 
 	// 实例化
-	const todoList = oTodoList.create(oTodoList)
+	const todoList = TodoList.create(oTodoList) //create 创建一个实例
 	// '/' 加上 '*' 号可以打出下面的注释
 	/**
 	 * addItem(todo) {id: new Date().getTime, content: oInput.value, completed: falser} 三个参数
@@ -29,11 +31,11 @@
 	// 事件处理函数
 	function onAddBtnClick() {
 		const val: string = oInput.value.trim()//去掉空格
-		if(!val.length) {//为空没有输入的状态
+		if(!val.length) {//为空没有输入的状态, 则为 0, 那么则为 false
 			return
 		}
 
-		todoList.addItem({
+		todoList.addItem({ //执行 addItem 函数, 添加一个 item
 			id: new Date().getTime(),
 			content: val,
 			completed: false
@@ -48,6 +50,21 @@
 	function onTodoListClick(e: MouseEvent) {//可能是【鼠标的点击】也可能是【键盘的点击】
 		const tar = e.target as HTMLElement //🔥因为 HTMLElement 上才有 tagName 属性
 		const tagName = tar!.tagName
+		if(tagName === 'input' || tagName === 'button') { //不用当心 button 会重复, 因为事件是绑定在 oTodoList 上的
+			const id:number = parseInt(tar.dataset.id!)
+
+			switch (tagName) {
+				case 'input':
+					todoList.toggleComplete(id)
+					break
+				case 'button':
+					todoList.removeItem(id)
+					break
+				default:
+					break
+				
+			}
+		}
 	}
 
 
