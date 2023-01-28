@@ -1,5 +1,6 @@
 import TodoList from './TodoList/index'
 
+// Controller 层
 ((doc) => {  //document 对象被传递给了 doc 参数，并 doc 作为参数传递给了匿名函数
 	const oInput: HTMLInputElement = doc.querySelector('input') as HTMLInputElement
 	const oAddBtn: HTMLButtonElement = doc.querySelector('.add-btn') as HTMLButtonElement
