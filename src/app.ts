@@ -52,8 +52,7 @@ import TodoList from './TodoList/index'
 		const tar = e.target as HTMLElement //🔥因为 HTMLElement 上才有 tagName 属性
 		const tagName = tar!.tagName.toLocaleLowerCase() //BUTTON 转化为小写 Button
 		// console.log(tagName);//大小写问题！！
-
-		console.log(oTodoList);
+		// console.log(oTodoList);
 
 		if(tagName === 'input' || tagName === 'button') { //不用当心 button 会重复, 因为事件是绑定在 oTodoList 上的
 			const id: number = parseInt(tar.dataset.id!)

@@ -35,7 +35,7 @@ class TodoList {
 	// 添加 todo DOM
 	@addTodoData(todoData) //装饰器挂载到 DOM 的过程中, 然后 addTodo 会把 todo: ITodo 给进行传入到 todoData
 	public addItem(todo: ITodo) { //todo 的接口
-		console.log('构建 view 中...');
+		// console.log('构建 view 中...');
 		const oItem: HTMLElement = document.createElement('div')
 		oItem.className = 'todo-item'
 		oItem.innerHTML = todoView(todo)
