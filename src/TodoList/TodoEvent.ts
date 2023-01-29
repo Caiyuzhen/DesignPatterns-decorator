@@ -1,7 +1,12 @@
 import { ITodo } from './index'
 
+
+// Todo 数据
+let todoData: ITodo[] = []
+
+
 // 用装饰器实现【 Module 层】的数据修改, 🔥🔥记住都是 todoData 的数据修改！！
-export function addTodoData(todoData: ITodo[]) {
+export function addTodoData() {
 	return function ( //返回一个装饰器函数
 		target: any, //当前【装饰的函数】所挂载的【容器】 -> TodoList.prototype, 类型定义一般是 any
 		methods: string, //【被装饰的函数】的【名称】
@@ -24,6 +29,7 @@ export function addTodoData(todoData: ITodo[]) {
 				_origin.call(this, todo) //⚡️⚡️重置 this 指向到 TodoList 的实例, 不然会报错 undefined!! 🔥🔥用 call 来修正指向!!
 				// console.log(todoData);
 			}
+			console.log(todoData); 
 		}
 		// console.log(target) 
 		//装饰器挂载在 class 的原型 （constructor) 上 
@@ -33,7 +39,7 @@ export function addTodoData(todoData: ITodo[]) {
 
 
 
-export function removeTodoData(todoData: ITodo[]) {
+export function removeTodoData() {
 	return function ( //返回一个装饰器函数
 	target: any, //当前【装饰的函数】的【容器】 -> TodoList.prototype, 类型一般是 any
 	methods: string, //【被装饰的函数】的【名称】
@@ -54,7 +60,7 @@ export function removeTodoData(todoData: ITodo[]) {
 
 
 
-export function changeTodoCompletedData(todoData: ITodo[]) {
+export function changeTodoCompletedData() {
 	return function ( //返回一个装饰器函数
 	target: any, //当前【装饰的函数】的【容器】 -> TodoList.prototype, 类型一般是 any
 	methods: string, //【被装饰的函数】的【名称】
@@ -72,6 +78,7 @@ export function changeTodoCompletedData(todoData: ITodo[]) {
 				}
 				return todo //Map 是没有 return 全部 todo 的, 所以要手动 return！
 			})
+			console.log(todoData);
 		}
 	} 
 }

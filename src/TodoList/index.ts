@@ -9,11 +9,8 @@ export interface ITodo {
 }
 
 
-// Todo 数据
-const todoData: ITodo[] = []
 
-
-// View 层
+// View 层的构造
 class TodoList {
 	private oTodoList: HTMLElement
 	private static instance: TodoList
@@ -33,7 +30,7 @@ class TodoList {
 
 
 	// 添加 todo DOM
-	@addTodoData(todoData) //装饰器挂载到 DOM 的过程中, 然后 addTodo 会把 todo: ITodo 给进行传入到 todoData
+	@addTodoData() //装饰器挂载到 DOM 的过程中, 然后 addTodo 会把 todo: ITodo 给进行传入到 todoData
 	public addItem(todo: ITodo) { //todo 的接口
 		// console.log('构建 view 中...');
 		const oItem: HTMLElement = document.createElement('div')
@@ -44,7 +41,7 @@ class TodoList {
 
 
 	// 删除 todo DOM
-	@removeTodoData(todoData) //装饰器挂载到 DOM 的过程中, 会根据下面 的id 去修改 todoData 的数据
+	@removeTodoData() //装饰器挂载到 DOM 的过程中, 会根据下面 的id 去修改 todoData 的数据
 	public removeItem(id: number) {
 		console.log('删除视图中...');
 		const oItems: HTMLCollection = document.getElementsByClassName('todo-item') //取出所有 item
@@ -59,8 +56,8 @@ class TodoList {
 
 	
 	// 修改 checkbox DOM
-	@changeTodoCompletedData(todoData) //挂载到 DOM 的过程中, 会传入 id 去更改 cpmpleted 的状态, 然后会返回一个函数, 再去执行下面的 const oItems... 等函数
-	public toggleComplete(id: number, completed: boolean) { //🔥🔥🔥completed 应该是在点击 checckbox 时候, 拦截一下数据, 获取 completed 的状态然后传入的
+	@changeTodoCompletedData() //挂载到 DOM 的过程中, 会传入 id 去更改 cpmpleted 的状态, 然后会返回一个函数, 再去执行下面的 const oItems... 等函数
+	public toggleComplete(id: number, completed ? : boolean) { //🔥🔥🔥completed 应该是在点击 checckbox 时候, 拦截一下数据, 获取 completed 的状态然后传入的
 		const oItems: HTMLCollection = document.getElementsByClassName('todo-item')
 
 		Array.from(oItems).forEach((oItem) => {
@@ -71,7 +68,6 @@ class TodoList {
 			}
 		})
 	}
-
 }
 
 

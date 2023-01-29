@@ -57,8 +57,7 @@ import TodoList from './TodoList/index'
 		if(tagName === 'input' || tagName === 'button') { //不用当心 button 会重复, 因为事件是绑定在 oTodoList 上的
 			const id: number = parseInt(tar.dataset.id!)
 
-			console.log('开始执行切换或绑定的事件...')
-			
+			// console.log('开始执行切换或绑定的事件...')
 			switch (tagName) {
 				case 'input':
 					todoList.toggleComplete(id)
